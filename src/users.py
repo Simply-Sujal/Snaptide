@@ -9,9 +9,13 @@ from fastapi_users.authentication import (
     JWTStrategy
 )
 from fastapi_users.db import SQLAlchemyUserDatabase
-from src.db import User, get_user_db 
+from src.db import User, get_user_db
+from dotenv import load_dotenv
+import os
 
-SECRET = "KSBDKSDJF232K!LJSND!@#$!@#$"
+load_dotenv()
+
+SECRET = os.getenv("SECRET")
 
 class UserManager(UUIDIDMixin, BaseUserManager[User, uuid.UUID]):
     reset_password_token_secret = SECRET
